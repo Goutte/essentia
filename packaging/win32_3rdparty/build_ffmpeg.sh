@@ -15,13 +15,14 @@ wget https://ffmpeg.org/releases/$FFMPEG_VERSION.tar.gz
 tar xf $FFMPEG_VERSION.tar.gz
 cd $FFMPEG_VERSION
 
+
 ./configure \
     $FFMPEG_AUDIO_FLAGS \
     $FFMPEG_AUDIO_FLAGS_MUXERS \
     --prefix=$PREFIX \
     --enable-cross-compile \
     --cross-prefix=$HOST- \
-    --arch=x86_32 \
+    --arch=x86_$BITS \
     --target-os=mingw32 \
     --enable-memalign-hack \
     #--enable-w32threads \
