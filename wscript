@@ -277,9 +277,9 @@ def configure(ctx):
         os.environ["PKG_CONFIG_PATH"] = 'packaging/win32_3rdparty/lib/pkgconfig'
 
         # locate MinGW compilers and use them
-        ctx.find_program("${CROSS_COMPILE_MINGW32_PREFIX}-gcc", var='CC')
-        ctx.find_program("${CROSS_COMPILE_MINGW32_PREFIX}-g++", var='CXX')
-        ctx.find_program("${CROSS_COMPILE_MINGW32_PREFIX}-ar", var='AR')
+        ctx.find_program("%s-gcc" % ctx.options.CROSS_COMPILE_MINGW32_PREFIX, var='CC')
+        ctx.find_program("%s-g++" % ctx.options.CROSS_COMPILE_MINGW32_PREFIX, var='CXX')
+        ctx.find_program("%s-ar" % ctx.options.CROSS_COMPILE_MINGW32_PREFIX, var='AR')
 
         # compile libgcc and libstd statically when using MinGW
         ctx.env.CXXFLAGS = ['-static-libgcc', '-static-libstdc++']
