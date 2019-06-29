@@ -1,6 +1,13 @@
 #!/bin/sh
 
+# May be 32 or 64. No 128bits yet.
+[[ -z "${BITS}" ]] && BITS=32
+
 HOST=i686-w64-mingw32
+if [ $BITS -eq 64 ] ; then
+    HOST=x86_64-w64-mingw32
+fi
+
 if [ -z "${PREFIX}" ]; then
     PREFIX=`pwd`
 fi
