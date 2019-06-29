@@ -51,7 +51,7 @@ class NoiseAdder : public Algorithm {
  public:
   NoiseAdder()
 #ifdef CPP_11
-      : _mtrand(time(NULL) ^ clock())
+//      : _mtrand(time(NULL) ^ clock())
 #endif
   {
     declareInput(_signal, "signal", "the input signal");
