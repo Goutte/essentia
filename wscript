@@ -61,6 +61,10 @@ def options(ctx):
     ctx.add_option('--cross-compile-mingw32', action='store_true',
                    dest='CROSS_COMPILE_MINGW32', default=False,
                    help='cross-compile for windows using mingw32 on linux')
+    
+    ctx.add_option('--cross-compile-mingw32-prefix', action='store',
+                   dest='CROSS_COMPILE_MINGW32_PREFIX', default='i686-w64-mingw32',
+                   help='set to x86_64-w64-mingw32 for 64 bits')
 
     ctx.add_option('--cross-compile-android', action='store_true',
                    dest='CROSS_COMPILE_ANDROID', default=False,
@@ -273,9 +277,9 @@ def configure(ctx):
         os.environ["PKG_CONFIG_PATH"] = 'packaging/win32_3rdparty/lib/pkgconfig'
 
         # locate MinGW compilers and use them
-        ctx.find_program('i686-w64-mingw32-gcc', var='CC')
-        ctx.find_program('i686-w64-mingw32-g++', var='CXX')
-        ctx.find_program('i686-w64-mingw32-ar', var='AR')
+        ctx.find_program("${CROSS_COMPILE_MINGW32_PREFIX}-gcc", var='CC')
+        ctx.find_program("${CROSS_COMPILE_MINGW32_PREFIX}-g++", var='CXX')
+        ctx.find_program("${CROSS_COMPILE_MINGW32_PREFIX}-ar", var='AR')
 
         # compile libgcc and libstd statically when using MinGW
         ctx.env.CXXFLAGS = ['-static-libgcc', '-static-libstdc++']
