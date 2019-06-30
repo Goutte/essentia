@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# May be 32 or 64. No 128bits yet.
-[[ -z "${BITS}" ]] && BITS=32
+if [ -z "${BITS}" ] ; then
+    BITS=32
+fi
 
 HOST=i686-w64-mingw32
 if [ $BITS -eq 64 ] ; then
