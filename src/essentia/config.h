@@ -136,7 +136,9 @@
   #pragma warning (disable : 4355) // this used in class initialization, but we do it in a safe way
 
   // tell microsoft we would like to use std::min and std::max
+  #ifndef NOMINMAX
   #define NOMINMAX
+  #endif
 
   typedef unsigned int uint;
 
