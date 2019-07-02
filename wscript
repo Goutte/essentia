@@ -198,6 +198,11 @@ def configure(ctx):
         ctx.env.CXXFLAGS += ['-pthread']
         ctx.env.LINKFLAGS += ['-pthread']
 
+        if ctx.options.ARCH == 'i386':
+            ctx.env.CXXFLAGS += ['-m32']
+            ctx.env.LINKFLAGS += ['-m32']
+            ctx.env.LDFLAGS = ['-m32']
+
     elif sys.platform == 'win32':
         print ("Building on win32")
 
